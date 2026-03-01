@@ -53,8 +53,8 @@ header label {
     position: relative;
     margin: 20px;
     text-align: center;
-    height: 40vh;
-    padding: 20px 50px;
+    height: 70vh;
+    padding:30px 50px;
     background-color: rgb(9, 53, 148);
     color: white;
 }
@@ -188,6 +188,7 @@ line-height: 25px;
     .about p{
         width: 90%;
     }
+<<<<<<< HEAD
     section{
         display: flex;
         flex-direction: column;
@@ -195,3 +196,6 @@ line-height: 25px;
     text-align: center;
     }
 }
+=======
+}
+>>>>>>> 7b8336b267d47e06f31232537d64d37166615e24
