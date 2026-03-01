@@ -24,6 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
    h1.append('Today is ' + today.toDateString());
     h1.classList.add('mobile');
   } else {
-    h1.textContent = 'Small Screen View';
+    h1.textContent = 'Welcome to my project landing page.';
   }
 });
