@@ -138,7 +138,7 @@ line-height: 25px;
         height: 30vh;
     }
    #hero h1 {
-    transform: translateX(-100%);
+    /* transform: translateX(-100%); */
     transition: 0.6s ease-in-out;
 }
 .active{
@@ -148,7 +148,7 @@ line-height: 25px;
 }
 
 #hero h1.mobile{ 
-    transform: translateX(10%);
+    /* transform: translateX(10%); */
 }
     .about p{
         width: 90%;
