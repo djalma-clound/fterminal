@@ -59,7 +59,11 @@ header label {
     color: white;
 }
   
-  
+  #hero h1{
+    font-size: 40px;
+    margin-top: 20px;
+    animation: slideIn 1s ease-in-out;
+}
 #hero a{
     position: relative;
     text-decoration: none;
