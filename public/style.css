@@ -137,19 +137,19 @@ line-height: 25px;
     #hero{
         height: 30vh;
     }
-   #hero h1 {
-    /* transform: translateX(-100%); */
+   /* #hero h1 {
+    transform: translateX(-100%);
     transition: 0.6s ease-in-out;
-}
+} */
 .active{
     width: 100px;
     margin: 0 auto;
    
 }
 
-#hero h1.mobile{ 
-    /* transform: translateX(10%); */
-}
+/* #hero h1.mobile{ 
+    transform: translateX(10%);
+} */
     .about p{
         width: 90%;
     }
