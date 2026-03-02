@@ -10,16 +10,15 @@ router.post('/', async (req, res) => {
             return res.status(400).json({ error: "All fields required" });
         }
 
-        await pool.execute(
-            "INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)",
+        await pool.query(
+            "INSERT INTO contacts (name, email, message) VALUES ($1, $2, $3)",
             [name, email, message]
         );
 
-        // res.status(200).json({ success: true, message: "Message saved successfully!" });
-        res.status(200).json({ success: true, message: "thank you for your message", redirectUrl: "https://djalmad.onrender.com" });
+        res.status(200).json({ success: true, message: "Message saved!" });
 
-    } catch (error) {
-        console.error(error);
+    } catch (err) {
+        console.error(err);
         res.status(500).json({ error: "Database error" });
     }
 });
