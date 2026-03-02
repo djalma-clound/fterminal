@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // h1.textContent = 'Mobile View';
     today = new Date();
     h1.setAttribute('data-today', today.toDateString());
+    h1.setAttribute('data-today', today.toDateString());
    h1.append('Today is ' + today.toDateString());
     h1.classList.add('mobile');
   } else {

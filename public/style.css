@@ -233,12 +233,17 @@ footer{
     text-align: center;
     }
     section{
-        /* width: 90%; */
         margin: 0 auto;
     }
     section ul{
         width: 80%;
         margin: 0 auto;
+    }
+    .contact{
+      width:90%;
+    }
+    .contact form{
+      width: 90%;
     }
     section p{
         width: 80%;
