@@ -28,7 +28,7 @@
 <br>
 
         <p>Do not be lost in the world of web development!</p>
-        <a href="https://djalmad.com" class="btn" target="_blank">Learn More</a>
+        <a href="https://djalmad.com" class="btn" target="_blank" onclick="myfunction()">Learn More</a>
     </section>
     <section class="about">
         <h2>About me</h2>
@@ -53,8 +53,18 @@ redesign, or help with SEO and content creation, I am here to help. Contact me t
 with your web development and design needs. 
           </p>
      </section>
+      <br>
+      <section class="contact">
+        <h2>Contact Me</h2>
+        <form action="/contact" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" placeholder="Your Message" required></textarea>
+    <button type="submit">Send</button>
+</form>
      <footer>
         <p>&copy; 2024 Djalmad. All rights reserved.</p>
+        <div id="count"></div>
      </footer>
     <script src="script.js"></script>
 </body>

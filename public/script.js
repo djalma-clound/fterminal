@@ -24,6 +24,15 @@ document.addEventListener('DOMContentLoaded', () => {
    h1.append('Today is ' + today.toDateString());
     h1.classList.add('mobile');
   } else {
-    h1.textContent = 'Welcome to my project landing page.';
+   h1.append('Today is ' + today.toDateString());
   }
 });
+
+myfunction = () => {
+    const countElement = document.getElementById('count');
+    let count = parseInt(localStorage.getItem('clickCount')) || 0;
+    count++;
+    
+    // localStorage.setItem('clickCount', count);
+    countElement.textContent = `Button clicked ${count} times.`;
+}
