@@ -2,27 +2,39 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 
-const pool = require('./config/db');   // ✅ move this to top
+const pool = require('./config/db');
 
 const PORT = process.env.PORT || 3000;
 
+// =====================
 // Middleware
+// =====================
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
+// =====================
 // Routes
+// =====================
 const contactRoute = require('./routes/contact');
 app.use('/contact', contactRoute);
 
-// Health check
+// Root route (health check for Render + localhost)
 app.get('/', (req, res) => {
     res.send("Server is running 🚀");
 });
 
-// ✅ Create table BEFORE starting server
-(async () => {
+// =====================
+// Start Server AFTER DB Connects
+// =====================
+async function startServer() {
   try {
+
+    // Test DB connection
+    await pool.query('SELECT NOW()');
+    console.log("Database connected ✅");
+
+    // Create table if not exists
     await pool.query(`
       CREATE TABLE IF NOT EXISTS contacts (
         id SERIAL PRIMARY KEY,
@@ -35,12 +47,15 @@ app.get('/', (req, res) => {
 
     console.log("Contacts table ready ✅");
 
-    // ✅ Start server AFTER DB is ready
+    // Start server
     app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
+      console.log(`Server running on http://localhost:${PORT}`);
     });
 
   } catch (err) {
-    console.error("Startup error:", err);
+    console.error("Startup error ❌", err);
+    process.exit(1); // Stop app if DB fails
   }
-})();
+}
+
+startServer();

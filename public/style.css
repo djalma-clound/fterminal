@@ -244,4 +244,13 @@ footer{
         width: 80%;
         margin: 0 auto;
     }
+    .contact form{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 80%;
+    margin: 0 auto;
+    bottom: 40px;
+}
 }
