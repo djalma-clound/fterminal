@@ -1,23 +1,26 @@
 const express = require('express');
 const router = express.Router();
+const pool = require('../config/db');
 
 router.post('/', async (req, res) => {
     try {
         const { name, email, message } = req.body;
 
         if (!name || !email || !message) {
-            return res.status(400).json({ error: "All fields are required" });
+            return res.status(400).json({ error: "All fields required" });
         }
 
-        console.log("New message:", { name, email, message });
+        await pool.execute(
+            "INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)",
+            [name, email, message]
+        );
 
-        // You can connect database or email service here
-
-        res.status(200).json({ success: true, message: "Message received!" });
+        // res.status(200).json({ success: true, message: "Message saved successfully!" });
+        res.status(200).json({ success: true, message: "thank you for your message", redirectUrl: "https://djalmad.onrender.com" });
 
     } catch (error) {
-        console.error("Contact error:", error);
-        res.status(500).json({ error: "Server error" });
+        console.error(error);
+        res.status(500).json({ error: "Database error" });
     }
 });
 
