@@ -39,9 +39,9 @@ router.post('/', async (req, res) => {
     res.json({ success: true, message: "Message saved & email sent!" });
 
   } catch (err) {
-    console.error("CONTACT ERROR:", err);
-    res.status(500).json({ success: false, message: "Email failed." });
-  }
+  console.error("EMAIL ERROR FULL:", err);
+  res.status(500).json({ success: false, message: err.message });
+}
 });
 
 module.exports = router;
