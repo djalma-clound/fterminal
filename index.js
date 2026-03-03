@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-
 const pool = require('./config/db');
 
 const PORT = process.env.PORT || 3000;
@@ -19,7 +18,7 @@ app.use(express.static('public'));
 const contactRoute = require('./routes/contact');
 app.use('/contact', contactRoute);
 
-// Root route (health check for Render + localhost)
+// Root route
 app.get('/', (req, res) => {
     res.send("Server is running 🚀");
 });
@@ -30,11 +29,9 @@ app.get('/', (req, res) => {
 async function startServer() {
   try {
 
-    // Test DB connection
     await pool.query('SELECT NOW()');
     console.log("Database connected ✅");
 
-    // Create table if not exists
     await pool.query(`
       CREATE TABLE IF NOT EXISTS contacts (
         id SERIAL PRIMARY KEY,
@@ -47,14 +44,13 @@ async function startServer() {
 
     console.log("Contacts table ready ✅");
 
-    // Start server
     app.listen(PORT, () => {
-      console.log(`Server running on http://localhost:${PORT}`);
+      console.log(`Server running on port ${PORT}`);
     });
 
   } catch (err) {
     console.error("Startup error ❌", err);
-    process.exit(1); // Stop app if DB fails
+    process.exit(1);
   }
 }
 

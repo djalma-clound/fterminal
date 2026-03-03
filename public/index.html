@@ -65,14 +65,13 @@ with your web development and design needs.
   </form>
 
   <!-- ✅ ADD THIS -->
-  <p id="status"></p>
+  <div id="status"></div>
 
 </section>
      <footer>
         <p>&copy; 2024 Djalmad. All rights reserved.</p>
         <div id="count"></div>
-     </footer>
-   <script>
+     </footer><script>
 document.querySelector("form").addEventListener("submit", async function(e) {
   e.preventDefault();
 
@@ -82,19 +81,25 @@ document.querySelector("form").addEventListener("submit", async function(e) {
     message: this.message.value
   };
 
-  const response = await fetch("/contact", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(formData)
-  });
+  try {
+    const response = await fetch("/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData)
+    });
 
-  const data = await response.json();
+    const data = await response.json();
 
-  const status = document.getElementById("status");
-  status.textContent = data.message;
-  status.style.color = "green";
+    const status = document.getElementById("status");
+    status.textContent = data.message;
+    status.style.color = data.success ? "green" : "red";
 
-  this.reset();
+    this.reset();
+
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Something went wrong");
+  }
 });
 </script>
     <script src="script.js"></script>
