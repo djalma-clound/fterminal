@@ -68,40 +68,49 @@ with your web development and design needs.
   <div id="status"></div>
 
 </section>
-     <footer>
-        <p>&copy; 2024 Djalmad. All rights reserved.</p>
-        <div id="count"></div>
-     </footer><script>
-document.querySelector("form").addEventListener("submit", async function(e) {
-  e.preventDefault();
+    
+     <script>
+document.addEventListener("DOMContentLoaded", function() {
 
-  const formData = {
-    name: this.name.value,
-    email: this.email.value,
-    message: this.message.value
-  };
+  const form = document.querySelector("form");
 
-  try {
-    const response = await fetch("https://djalmad.onrender.com/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData)
-    });
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault(); // STOP normal GET request
 
-    const data = await response.json();
+    const formData = {
+      name: form.name.value,
+      email: form.email.value,
+      message: form.message.value
+    };
 
-    const status = document.getElementById("status");
-    status.textContent = data.message;
-    status.style.color = data.success ? "green" : "red";
+    try {
+      const response = await fetch("https://djalmad.onrender.com/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
 
-    this.reset();
+      const data = await response.json();
 
-  } catch (error) {
-    console.error("Error:", error);
-    alert("Something went wrong");
-  }
+      const status = document.getElementById("status");
+      status.textContent = data.message;
+      status.style.color = data.success ? "green" : "red";
+
+      form.reset();
+
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Something went wrong");
+    }
+
+  });
+
 });
 </script>
     <script src="script.js"></script>
+     <footer>
+        <p>&copy; 2024 Djalmad. All rights reserved.</p>
+        
+     </footer>
 </body>
 </html>
