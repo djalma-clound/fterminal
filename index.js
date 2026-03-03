@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors'); // ✅ ADD CORS
 const app = express();
 const pool = require('./config/db');
 
@@ -8,8 +9,11 @@ const PORT = process.env.PORT || 3000;
 // =====================
 // Middleware
 // =====================
+app.use(cors()); // ✅ ENABLE CORS
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 app.use(express.static('public'));
 
 // =====================
