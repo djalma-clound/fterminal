@@ -25,8 +25,8 @@ router.post('/', async (req, res) => {
     // ✅ Send email
 await transporter.sendMail({
   from: process.env.EMAIL_USER,
-  to: "service@djalmad.com",   // 👈 receiver here
-  replyTo: email, // 👈 so you can reply directly
+  to: process.env.EMAIL_TO,
+  replyTo: email,
   subject: "New Contact Form Message 🚀",
   html: `
     <h3>New message from website</h3>
@@ -36,11 +36,11 @@ await transporter.sendMail({
     <p>${message}</p>
   `
 });
-    res.json({ success: true, message: "Message saved & email sent!" });
+    res.json({ success: true, message: "Message saved & email sent!", link: "https://djalmad.onrender.com" });
 
   } catch (err) {
     console.error(err);
-    res.status(500).json({ success: false, message: "Error sending message", link: "https://djalmad.onrendercom" });
+    res.status(500).json({ success: false, message: "Error sending message", link: "https://djalmad.onrender.com" });
   }
 });
 
