@@ -54,18 +54,49 @@ with your web development and design needs.
           </p>
      </section>
       <br>
-      <section id="contact" class="contact">
-        <h2>Contact Me</h2>
-        <form action="/contact" method="POST">
+ <section id="contact" class="contact">
+  <h2>Contact Me</h2>
+
+  <form action="/contact" method="POST">
     <input type="text" name="name" placeholder="Your Name" required>
     <input type="email" name="email" placeholder="Your Email" required>
     <textarea name="message" placeholder="Your Message" required></textarea>
     <button type="submit">Send</button>
-</form>
+  </form>
+
+  <!-- ✅ ADD THIS -->
+  <p id="status"></p>
+
+</section>
      <footer>
         <p>&copy; 2024 Djalmad. All rights reserved.</p>
         <div id="count"></div>
      </footer>
+   <script>
+document.querySelector("form").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const formData = {
+    name: this.name.value,
+    email: this.email.value,
+    message: this.message.value
+  };
+
+  const response = await fetch("/contact", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formData)
+  });
+
+  const data = await response.json();
+
+  const status = document.getElementById("status");
+  status.textContent = data.message;
+  status.style.color = "green";
+
+  this.reset();
+});
+</script>
     <script src="script.js"></script>
 </body>
 </html>
