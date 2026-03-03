@@ -1,7 +1,12 @@
+const express = require('express');
+const router = express.Router();
+
 router.post('/', (req, res) => {
   console.log("CONTACT HIT");
-  res.json({ success: true, message: "Route working" });
+  res.json({ success: true, message: "Route working!" });
 });
+
+module.exports = router;
 
 
 
